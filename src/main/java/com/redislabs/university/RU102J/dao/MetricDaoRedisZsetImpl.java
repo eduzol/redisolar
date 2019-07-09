@@ -50,6 +50,7 @@ public class MetricDaoRedisZsetImpl implements MetricDao {
                               ZonedDateTime dateTime) {
            String metricKey = RedisSchema.getDayMetricKey(siteId, unit, dateTime);
            Integer minuteOfDay = getMinuteOfDay(dateTime);
+           jedis.zadd(metricKey, minuteOfDay,value+":"+minuteOfDay);
     }
 
     /**
